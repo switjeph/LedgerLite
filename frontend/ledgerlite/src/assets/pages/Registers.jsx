@@ -272,7 +272,7 @@ export default function Registers() {
                             resetForm();
                             setShowForm(true);
                         }}
-                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition-colors shadow-sm"
+                        className="flex items-center gap-2 px-4 py-2 bg-marine-600 text-white rounded-lg hover:bg-marine-700 font-medium transition-colors shadow-sm"
                     >
                         <Plus size={18} />
                         New Entry
@@ -290,8 +290,8 @@ export default function Registers() {
                             setSelectedIds([]); // Clear selection on tab change
                         }}
                         className={`px-4 py-2 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${activeTab === type
-                                ? "border-indigo-600 text-indigo-600"
-                                : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                            ? "border-marine-600 text-marine-600"
+                            : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                             }`}
                     >
                         {type}
@@ -306,7 +306,7 @@ export default function Registers() {
                     <input
                         type="text"
                         placeholder="Search by description, entity, or ID..."
-                        className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none"
+                        className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
@@ -321,7 +321,7 @@ export default function Registers() {
                             <th className="px-6 py-4 w-10">
                                 <button onClick={toggleSelectAll} className="text-gray-400 hover:text-gray-600">
                                     {selectedIds.length === filteredEntries.length && filteredEntries.length > 0 ? (
-                                        <CheckSquare size={20} className="text-indigo-600" />
+                                        <CheckSquare size={20} className="text-marine-600" />
                                     ) : (
                                         <Square size={20} />
                                     )}
@@ -344,10 +344,10 @@ export default function Registers() {
                                 const isSelected = selectedIds.includes(entry.id);
 
                                 return (
-                                    <tr key={entry.id} className={`hover:bg-gray-50/50 transition-colors ${isSelected ? "bg-indigo-50/30" : ""}`}>
+                                    <tr key={entry.id} className={`hover:bg-gray-50/50 transition-colors ${isSelected ? "bg-marine-50/30" : ""}`}>
                                         <td className="px-6 py-4">
                                             <button onClick={() => toggleSelect(entry.id)} className="text-gray-400 hover:text-gray-600">
-                                                {isSelected ? <CheckSquare size={20} className="text-indigo-600" /> : <Square size={20} />}
+                                                {isSelected ? <CheckSquare size={20} className="text-marine-600" /> : <Square size={20} />}
                                             </button>
                                         </td>
                                         <td className="px-6 py-4">
@@ -374,14 +374,14 @@ export default function Registers() {
                                         <td className="px-6 py-4 text-center">
                                             <div className="flex items-center justify-center gap-2">
                                                 {entry.status === "Draft" && (
-                                                    <button onClick={() => handleEdit(entry)} className="text-gray-400 hover:text-indigo-600" title="Edit">
+                                                    <button onClick={() => handleEdit(entry)} className="text-gray-400 hover:text-marine-600" title="Edit">
                                                         <Edit size={16} />
                                                     </button>
                                                 )}
                                                 {entry.status === "Pending" && (
                                                     <button
                                                         onClick={() => approveEntry(entry.id)}
-                                                        className="text-indigo-600 hover:text-indigo-800 flex items-center gap-1 text-xs font-medium bg-indigo-50 px-2 py-1 rounded"
+                                                        className="text-marine-600 hover:text-marine-800 flex items-center gap-1 text-xs font-medium bg-marine-50 px-2 py-1 rounded"
                                                     >
                                                         Approve <ArrowRight size={12} />
                                                     </button>
@@ -442,7 +442,7 @@ export default function Registers() {
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
                                     <input
                                         type="date"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none"
                                         value={form.date}
                                         onChange={(e) => setForm({ ...form, date: e.target.value })}
                                     />
@@ -450,7 +450,7 @@ export default function Registers() {
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
                                     <select
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-white"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none bg-white"
                                         value={form.type}
                                         onChange={(e) => setForm({ ...form, type: e.target.value })}
                                     >
@@ -462,7 +462,7 @@ export default function Registers() {
                                     <input
                                         type="text"
                                         placeholder="e.g. INV-001"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none"
                                         value={form.reference}
                                         onChange={(e) => setForm({ ...form, reference: e.target.value })}
                                     />
@@ -474,7 +474,7 @@ export default function Registers() {
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                                     <input
                                         type="text"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none"
                                         value={form.description}
                                         onChange={(e) => setForm({ ...form, description: e.target.value })}
                                     />
@@ -483,7 +483,7 @@ export default function Registers() {
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Entity (Customer/Supplier)</label>
                                     <input
                                         type="text"
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none"
                                         value={form.entity}
                                         onChange={(e) => setForm({ ...form, entity: e.target.value })}
                                     />
@@ -497,7 +497,7 @@ export default function Registers() {
                                     <button
                                         type="button"
                                         onClick={addEntryLine}
-                                        className="text-sm text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-1"
+                                        className="text-sm text-marine-600 hover:text-marine-700 font-medium flex items-center gap-1"
                                     >
                                         <PlusCircle size={16} /> Add Line
                                     </button>
@@ -507,7 +507,7 @@ export default function Registers() {
                                     {form.entries.map((entry, idx) => (
                                         <div key={idx} className="flex gap-2 items-center">
                                             <select
-                                                className="flex-[2] px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none bg-white text-sm"
+                                                className="flex-[2] px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none bg-white text-sm"
                                                 value={entry.account}
                                                 onChange={(e) => handleEntryChange(idx, "account", e.target.value)}
                                             >
@@ -521,7 +521,7 @@ export default function Registers() {
                                             <input
                                                 type="number"
                                                 placeholder="Debit"
-                                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none text-sm"
+                                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none text-sm"
                                                 value={entry.debit}
                                                 onChange={(e) => handleEntryChange(idx, "debit", e.target.value)}
                                                 disabled={!!entry.credit}
@@ -529,7 +529,7 @@ export default function Registers() {
                                             <input
                                                 type="number"
                                                 placeholder="Credit"
-                                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none text-sm"
+                                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-marine-500/20 focus:border-marine-500 outline-none text-sm"
                                                 value={entry.credit}
                                                 onChange={(e) => handleEntryChange(idx, "credit", e.target.value)}
                                                 disabled={!!entry.debit}
@@ -586,7 +586,7 @@ export default function Registers() {
                                 <button
                                     type="button"
                                     onClick={() => handleSave("Pending")}
-                                    className="flex-1 px-4 py-2.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition-colors shadow-sm"
+                                    className="flex-1 px-4 py-2.5 bg-marine-600 text-white rounded-lg hover:bg-marine-700 font-medium transition-colors shadow-sm"
                                 >
                                     Submit for Approval
                                 </button>

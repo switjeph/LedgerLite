@@ -88,16 +88,15 @@ export default function Profile() {
             />
             <div className="flex items-center gap-2 mt-2">
               <span
-                className={`text-xs ${
-                  emailVerified ? "text-green-600" : "text-red-500"
-                }`}
+                className={`text-xs ${emailVerified ? "text-green-600" : "text-red-500"
+                  }`}
               >
                 {emailVerified ? "Verified" : "Not Verified"}
               </span>
               {!emailVerified && (
                 <button
                   type="button"
-                  className="text-blue-500 underline text-xs"
+                  className="text-marine-500 underline text-xs"
                   onClick={handleResendVerification}
                 >
                   Resend Verification
@@ -165,7 +164,7 @@ export default function Profile() {
               onChange={(e) => setNewPassword(e.target.value)}
             />
           </div>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mt-4">
+          <button className="bg-marine-600 text-white px-4 py-2 rounded-lg hover:bg-marine-700 mt-4">
             Change Password
           </button>
         </form>

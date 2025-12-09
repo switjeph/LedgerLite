@@ -52,6 +52,92 @@ export const LedgerProvider = ({ children }) => {
     const [transactions, setTransactions] = useState(INITIAL_TRANSACTIONS);
     const [registerEntries, setRegisterEntries] = useState(INITIAL_REGISTER_ENTRIES);
     const [templates, setTemplates] = useState([]);
+    const [auditLog, setAuditLog] = useState([]);
+
+    const logAction = (action, details) => {
+        const logEntry = {
+            id: Date.now(),
+            timestamp: new Date().toISOString(),
+            action,
+            details,
+            user: "Admin", // Mock user
+        };
+        setAuditLog(prev => [logEntry, ...prev]);
+    };
+
+    // --- Chart of Accounts Actions ---
+
+    const addAccount = (account) => {
+        setChartOfAccounts((prev) => [...prev, { ...account, id: Date.now().toString() }]);
+        logAction("Create Account", `Created account ${account.name} (${account.type})`);
+    };
+
+    const deleteAccount = (id) => {
+        const account = chartOfAccounts.find(a => a.id === id);
+        if (account) {
+            setChartOfAccounts((prev) => prev.filter((a) => a.id !== id));
+            logAction("Delete Account", `Deleted account ${account.name}`);
+        }
+    };
+
+    // --- Data Management ---
+
+    const importData = (data) => {
+        try {
+            if (data.chartOfAccounts) setChartOfAccounts(data.chartOfAccounts);
+            if (data.transactions) setTransactions(data.transactions);
+            if (data.registerEntries) setRegisterEntries(data.registerEntries);
+            if (data.templates) setTemplates(data.templates);
+            logAction("Import Data", "Restored data from backup file");
+            return { success: true };
+        } catch (error) {
+            console.error("Import failed:", error);
+            return { success: false, error: error.message };
+        }
+    };
+
+    // --- Settings / Preferences ---
+    const [settings, setSettings] = useState(() => {
+        const saved = localStorage.getItem("ledger_settings");
+        return saved ? JSON.parse(saved) : {
+            currency: "USD",
+            theme: "light",
+            companyName: "My Company",
+            notifications: true
+        };
+    });
+
+    useEffect(() => {
+        localStorage.setItem("ledger_settings", JSON.stringify(settings));
+
+        // Apply theme to document
+        if (settings.theme === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    }, [settings]);
+
+    const updateSettings = (newSettings) => {
+        setSettings(prev => ({ ...prev, ...newSettings }));
+        logAction("Update Settings", "Updated application preferences");
+    };
+
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat(undefined, {
+            style: "currency",
+            currency: settings.currency,
+        }).format(amount);
+    };
+
+    const addTransaction = (transaction) => {
+        const newTx = {
+            id: `TXN-${new Date().getFullYear()}-${String(Date.now()).slice(-3)}`,
+            ...transaction,
+        };
+        setTransactions((prev) => [newTx, ...prev]);
+        logAction("Create Transaction", `Created transaction ${newTx.id}`);
+    };
 
     // --- Register Actions ---
 
@@ -123,6 +209,15 @@ export const LedgerProvider = ({ children }) => {
                 deleteMultipleEntries,
                 addTemplate,
                 deleteTemplate,
+                auditLog,
+                logAction,
+                addTransaction,
+                addAccount,
+                deleteAccount,
+                importData,
+                settings,
+                updateSettings,
+                formatCurrency,
             }}
         >
             {children}

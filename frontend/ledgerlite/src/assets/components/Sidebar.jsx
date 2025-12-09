@@ -12,8 +12,8 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 bg-indigo-700 text-white h-screen fixed left-0 top-0 flex flex-col shadow-lg">
-      <div className="p-4 text-2xl font-bold border-b border-indigo-500">
+    <aside className="w-64 bg-marine-700 text-white h-screen fixed left-0 top-0 flex flex-col shadow-lg">
+      <div className="p-4 text-2xl font-bold border-b border-marine-500">
         LedgerLite
       </div>
       <nav className="flex-1 p-4 space-y-3">
@@ -22,7 +22,7 @@ export default function Sidebar() {
             key={idx}
             to={link.to}
             className={({ isActive }) =>
-              `flex items-center space-x-3 p-2 rounded-lg transition ${isActive ? "bg-indigo-500 font-semibold" : "hover:bg-indigo-600"
+              `flex items-center space-x-3 p-2 rounded-lg transition ${isActive ? "bg-marine-500 font-semibold" : "hover:bg-marine-600"
               }`
             }
           >
